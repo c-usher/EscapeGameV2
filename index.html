@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Major Mono Display' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <title>Escape!</title>
+</head>
+
+<body>
+    <div id="main-screen">
+        <ul id="hand"></ul>
+        <button id="attack-button">Attack</button>
+        <button id="run-button">Run</button>
+        <div id="combat-button-box">
+            <h1 class="attacked"></h1>
+        </div>
+        <button id="restart-button">Restart</button>
+    </div>
+    <div id="game-over-screen"></div>
+    <div id="start-screen">
+        <img src="https://cdna.artstation.com/p/assets/images/images/017/763/240/large/adam-mossakowski-ship10.jpg?1557252246"
+            alt="Start Background" id="start-screen-image">
+        <div id='start-text'>
+            <h1>Escape!</h1>
+            
+            <h2> Your stranded on a spaceship infested by an aggressive alien species. Your only chance at survival is fighting your way to the escape pod. You will be given a random direction card every round so choose wisely. Running will only prolong the inevitable you must fight! Good Luck!</h2>
+            <button id="start-button">Start</button>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js"
+        integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
