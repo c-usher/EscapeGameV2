@@ -1,3 +1,4 @@
+$(() => {
 class Character {
   constructor(hp, dmg, name) {
     this.hp = hp;
@@ -53,6 +54,11 @@ const $attackButton = $("#attack-button");
 const $runButton = $("#run-button");
 const $restartButton = $("#restart-button");
 const $combatButtonBox = $("#combat-button-box");
+const $healthBar = $("#health-bar");
+const $enemyHealthBar = $("#enemy-health-bar");
+const $energyBar = $("#energy-bar");
+const $bossHealthBar = $("#boss-health-bar");
+
 
 const $bossBattleImage = $("<img>")
   .attr("src", "defaultImages/bossBattleImage.jpeg")
@@ -100,6 +106,7 @@ const chosenDirection = () => {
   ) {
     $enemyImage.appendTo($mainScreen);
     $enemyImage.show();
+    $enemyHealthBar.show();
     generateEnemy();
     combat();
   } else {
@@ -107,17 +114,25 @@ const chosenDirection = () => {
     $attackButton.hide();
     $runButton.hide();
     $enemyImage.hide();
+    $enemyHealthBar.hide();
+    $energyBar.hide();
+    $healthBar.hide();
+    $bossHealthBar.hide();
   }
 
   if (enemyGraveyard.length === 4) {
     $(".maze-image").remove();
     $enemyImage.hide();
+    $enemyHealthBar.hide();
     $mainScreen.append($bossBattleImage);
     $bossBattleImage.show();
     $combatButtonBox.show();
     $attackButton.show();
     $runButton.show();
     generateBoss();
+    $bossHealthBar.attr("max", enemyInCombat[0].hp);
+    $bossHealthBar.val(enemyInCombat[0].hp);
+    $bossHealthBar.show();
     combat();
   }
 
@@ -129,6 +144,9 @@ const chosenDirection = () => {
     $runButton.hide();
     $combatButtonBox.hide();
     $enemyImage.hide();
+    $enemyHealthBar.hide();
+    $energyBar.hide();
+    $healthBar.hide();
     $escapePodImage.appendTo($mainScreen);
     $("<h1>").text("YOU WIN!").addClass("win-announce").appendTo($mainScreen);
     $(".win-announce").show();
@@ -157,6 +175,7 @@ const createHand = () => {
 const generateEnemy = () => {
   const enemy = new Character(15, Math.floor(Math.random() * 6) + 1, "enemy");
   enemyInCombat.unshift(enemy);
+  $enemyHealthBar.val(enemyInCombat[0].hp);
 };
 
 const generateBoss = () => {
@@ -172,14 +191,16 @@ const combat = () => {
   $combatButtonBox.show();
   $attackButton.show();
   $runButton.show();
+  $healthBar.show();
+  $energyBar.show();
   $hand.hide();
   $(".attacked")
     .text("Your Being Attacked!")
     .addClass("attack-announce")
     .appendTo($combatButtonBox);
-  //This part <--------------
   if (isClicked === true) {
     enemyInCombat[0].attack(hero);
+    $healthBar.val(hero.hp);
     $enemyImage.animate({ left: "+=1em" }, "fast");
     $enemyImage.animate({ left: "-=1em" }, "fast");
     isClicked = false;
@@ -196,6 +217,9 @@ const combat = () => {
     $restartButton.show();
     $gameOverImage.appendTo($gameOverScreen);
     $gameOverScreen.show();
+    $healthBar.hide();
+    $energyBar.hide();
+    $enemyHealthBar.hide();
     clearTheGraveyard(enemyGraveyard);
   }
 
@@ -209,6 +233,7 @@ const combat = () => {
     $attackButton.hide();
     $runButton.hide();
     $hand.show();
+    $enemyHealthBar.hide();
   }
 };
 
@@ -223,6 +248,10 @@ $startButton.on("click", () => {
 
 $attackButton.on("click", () => {
   hero.attack(enemyInCombat[0]);
+  $enemyHealthBar.val(enemyInCombat[0].hp);
+  if (enemyGraveyard.length === 4){
+    $bossHealthBar.val(enemyInCombat[0].hp);
+  }
   isClicked = true;
   combat();
 });
@@ -233,6 +262,7 @@ $runButton.on("click", () => {
     $(".maze-image").remove();
     $hand.show();
     chosenDirection();
+    $energyBar.val(hero.ep);
   } else {
     $("<h1>")
       .text("Your out of energy! You must fight!")
@@ -262,13 +292,17 @@ $restartButton.on("click", () => {
   $(".energy-announce").remove();
   clearTheGraveyard(enemyGraveyard);
   clearTheGraveyard(enemyInCombat);
-  console.log(enemyGraveyard);
+  $energyBar.val(100);
 });
 
-$(() => {
+
   $combatButtonBox.hide();
   $attackButton.hide();
   $runButton.hide();
   $enemyImage.hide();
   $restartButton.hide();
+  $enemyHealthBar.hide();
+  $healthBar.hide();
+  $energyBar.hide();
+  $bossHealthBar.hide();
 });
