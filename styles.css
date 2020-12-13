@@ -169,3 +169,24 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#health-bar{
+  position: absolute;
+  top: 90%;
+  left: 35%;
+  transform: translate(-20%, -20%);
+}
+
+#energy-bar {
+  position: absolute;
+  top: 90%;
+  left: 52%;
+  transform: translate(-20%, -20%);
+}
+
+#enemy-health-bar, #boss-health-bar {
+  position: absolute;
+  top: 65%;
+  left: 45%;
+  transform: translate(-20%, -20%);
+}
