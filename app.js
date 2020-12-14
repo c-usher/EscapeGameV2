@@ -186,7 +186,7 @@ const generateBoss = () => {
 const generateHero = () => {
   hero = new Character(95, 10, "Cody");
 };
-// Its In Here <---------- !!!!!!
+
 const combat = () => {
   $combatButtonBox.show();
   $attackButton.show();
@@ -273,7 +273,6 @@ $runButton.on("click", () => {
   }
 });
 
-// THIS!!!!!!!!!!!! <-----------
 $restartButton.on("click", () => {
   $gameOverScreen.hide();
   $(".maze-image").remove();

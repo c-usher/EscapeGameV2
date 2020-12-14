@@ -175,6 +175,7 @@ body {
   top: 90%;
   left: 35%;
   transform: translate(-20%, -20%);
+
 }
 
 #energy-bar {
@@ -182,6 +183,7 @@ body {
   top: 90%;
   left: 52%;
   transform: translate(-20%, -20%);
+
 }
 
 #enemy-health-bar, #boss-health-bar {
@@ -189,4 +191,4 @@ body {
   top: 65%;
   left: 45%;
   transform: translate(-20%, -20%);
-}
+};
