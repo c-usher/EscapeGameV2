@@ -82,6 +82,10 @@ body {
   color: whitesmoke;
 }
 
+.energy-announce{
+  color: whitesmoke;
+}
+
 #combat-button-box {
   position: absolute;
   top: 80%;

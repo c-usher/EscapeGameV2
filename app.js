@@ -97,7 +97,7 @@ const chosenDirection = () => {
   $($mainScreen).append($randomMazeImage);
   if (currentMazeImage.length === 2) {
     currentMazeImage.pop();
-  }
+  };
 
   if (
     currentMazeImage[0] === mazeImages[3] ||
@@ -152,7 +152,6 @@ const chosenDirection = () => {
     $(".win-announce").show();
     $escapePodImage.show();
     clearTheGraveyard(enemyGraveyard);
-    console.log(enemyGraveyard);
   }
 };
 
@@ -197,7 +196,8 @@ const combat = () => {
   $(".attacked")
     .text("Your Being Attacked!")
     .addClass("attack-announce")
-    .appendTo($combatButtonBox);
+    .appendTo($combatButtonBox)
+    .show();
   if (isClicked === true) {
     enemyInCombat[0].attack(hero);
     $healthBar.val(hero.hp);
@@ -235,6 +235,13 @@ const combat = () => {
     $hand.show();
     $enemyHealthBar.hide();
   }
+  if (hero.ep <= 0){
+    $runButton.hide();
+    $(".energy-announce")
+      .text("Your out of energy! You must fight!")
+      .show();
+    $(".attack-announce").hide();
+  }
 };
 
 $startButton.on("click", () => {
@@ -260,15 +267,11 @@ $runButton.on("click", () => {
   if (hero.ep > 0) {
     hero.ep -= 25;
     $(".maze-image").remove();
+    enemyInCombat.pop();
     $hand.show();
     chosenDirection();
     $energyBar.val(hero.ep);
   } else {
-    $("<h1>")
-      .text("Your out of energy! You must fight!")
-      .addClass("energy-announce")
-      .appendTo($combatButtonBox);
-    $(".attack-announce").hide();
     $runButton.hide();
   }
 });
@@ -288,7 +291,7 @@ $restartButton.on("click", () => {
   $(".died").remove();
   $bossBattleImage.hide();
   $(".win-announce").remove();
-  $(".energy-announce").remove();
+  $(".energy-announce").hide();
   clearTheGraveyard(enemyGraveyard);
   clearTheGraveyard(enemyInCombat);
   $energyBar.val(100);
