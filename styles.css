@@ -78,6 +78,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.attack-announce{
+  color: whitesmoke;
+}
+
 #combat-button-box {
   position: absolute;
   top: 80%;
@@ -85,10 +89,6 @@ body {
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
-}
-
-#combat-button-box h1 {
-  background-color: rgba(245, 245, 245, 0.5);
 }
 
 #combat-button-box-background{
@@ -188,18 +188,17 @@ progress[value]::-webkit-progress-value{
   background-size: 35px 20px;
 }
 
-/* progress[value]::-webkit-progress-value{
-  background-image:
-   -webkit-linear-gradient(yellow, lawngreen);
-  border-radius: 4px;
-  background-size: 35px 20px;
-} */
 #energy-bar::-webkit-progress-value{
   background-image:
    -webkit-linear-gradient(#fce205, #ffd300);
   border-radius: 4px;
   background-size: 35px 20px;
 }
+ #health-bar::before{
+   content: attr(data-label);
+   font-size: 1em;
+   color: whitesmoke;
+ }
 
 #health-bar{
   position: absolute;
@@ -208,11 +207,29 @@ progress[value]::-webkit-progress-value{
   transform: translate(-20%, -20%);
 }
 
+#energy-bar::before{
+  content: attr(data-label);
+  font-size: 1em;
+  color: whitesmoke;
+}
+
 #energy-bar {
   position: absolute;
   top: 90%;
   left: 67%;
   transform: translate(-20%, -20%);
+}
+
+#enemy-health-bar::before{
+  content: attr(data-label);
+  font-size: 1em;
+  color: #CC0033;
+}
+
+#boss-health-bar::before{
+  content: attr(data-label);
+  font-size: 1em;
+  color: #CC0033;
 }
 
 #enemy-health-bar, #boss-health-bar {
